@@ -1,5 +1,24 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-// 从追更阅读器 unreadGrant 提炼，来源与使用位置见 README.md。
+/**
+ * 带有效期记录的未读判定。
+ *
+ * 数据链路（同一进程内存）：
+ * 完成状态 + 历史领取记录 + 显式时间
+ * → findUnreadGrant → 有效记录或 null
+ * → projectUnread → 未读标记与章节索引。
+ *
+ * 同一章可能重复领取：旧记录未完成，章节却已在新记录下完成。
+ * 同时检查记录有效期与章节完成状态，不能用访问权限代替未读判定。
+ * 临时记录在 at <= now < until 有效；正式记录永久有效。
+ * 只查询、不修改历史数据；第 0 章仍是有效目标。
+ *
+ * 运行：Node.js 22+，无需安装依赖，执行 node demo.mjs。
+ * 输出：领取、过期、重领、完成四个阶段，unread 为 true/false/true/false。
+ *
+ * 实际使用：Koodo 追更阅读器的 model.js::unreadGrant。
+ * https://github.com/xxs9331/koodo-serial-reader/blob/f2ad1058654f12c5f58bf3671276856e2eee57cc/src/utils/serial/model.js#L190
+ * 来源：Koodo Reader 及其贡献者，AGPL-3.0；本例缩小输入范围并统一空结果为 null。
+ */
 import { pathToFileURL } from 'node:url';
 
 /** @typedef {{key: string, startIndex: number, completed: number[]}} BookState */

@@ -1,6 +1,4 @@
 node_modules/
-artifacts/
-.gorilla-lights/
 .env
 .env.*
 .DS_Store
