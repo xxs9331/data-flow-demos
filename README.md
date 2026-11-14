@@ -23,7 +23,7 @@ flowchart LR
 | 看数据与位置 | [数据地图](maps/reader-state.md) |
 | 理解问题与取舍 | [博客：从领取记录计算未读状态](demos/state/expiring-unread/blog.md) |
 | 运行和复用 | [单文件 demo 说明](demos/state/expiring-unread/README.md) |
-| 查看实际使用 | [Demo 中的项目与使用位置](demos/state/expiring-unread/README.md#实际使用) |
+| 查看实际使用 | [追更阅读器的 unreadGrant](https://github.com/xxs9331/koodo-serial-reader/blob/f2ad1058654f12c5f58bf3671276856e2eee57cc/src/utils/serial/model.js#L190) |
 | 按技术问题查找 | [状态计算 → 带有效期记录的未读判定](demos/state/expiring-unread/README.md) |
 | 供 AI 读取的关系索引 | [catalog.json](catalog.json) |
 

@@ -46,7 +46,7 @@ node --test demos/state/expiring-unread/demo.test.mjs
 
 ## 实际使用
 
-追更阅读器：`src/utils/serial/model.js` 的 `unreadGrant`。作者自有仓库的具体代码链接待确认，确认后直接登记到 `catalog.json` 的 `usages`；不使用上游仓库代替实际应用代码。
+[Koodo 追更阅读器](https://github.com/xxs9331/koodo-serial-reader/blob/f2ad1058654f12c5f58bf3671276856e2eee57cc/src/utils/serial/model.js#L190)：`src/utils/serial/model.js` 的 `unreadGrant`。
 
 本例从该逻辑提炼，改为显式传入当前书籍，空结果统一为 `null`。用于测试对照的[原函数选段](reader-source.cjs)保留在 demo 目录，来源见 [NOTICE](../../../NOTICE.md)。
 

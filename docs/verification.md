@@ -19,6 +19,8 @@
 
 文书入口为根目录 `catalog.json`。资料读取协议见 [GitHub 资料源](github-source.md)。博客仍待作者审查。
 
+实际使用源码已发布到作者自有的 [koodo-serial-reader](https://github.com/xxs9331/koodo-serial-reader/blob/f2ad1058654f12c5f58bf3671276856e2eee57cc/src/utils/serial/model.js#L190)，提交为 `f2ad1058654f12c5f58bf3671276856e2eee57cc`。该源码快照保留应用实现原样，排除 `.env`、`electron-builder.env`、`docker-compose-secret.yml`、个人阅读数据与运行产物；排除文件未进入任何发布提交。已核对 token 模块仅包含逻辑，且与公开上游文件哈希一致。33 项追更单元测试通过，未重新打包或部署应用。
+
 ## 首次文书包
 
 使用文书本机项目 API 创建项目，保存修改目标；博客作为主稿，代码、测试、demo 说明、数据地图与仓库组织说明作为六份可读取的参考资料。原始仓库文件及逐文件 SHA-256 保存在附件中。

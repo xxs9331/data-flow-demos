@@ -17,7 +17,13 @@
       "entry": "demos/state/expiring-unread/demo.mjs",
       "tests": "demos/state/expiring-unread/demo.test.mjs",
       "blogs": ["demos/state/expiring-unread/blog.md"],
-      "usages": [],
+      "usages": [
+        {
+          "project": "Koodo 追更阅读器",
+          "url": "https://github.com/xxs9331/koodo-serial-reader/blob/f2ad1058654f12c5f58bf3671276856e2eee57cc/src/utils/serial/model.js#L190",
+          "location": "src/utils/serial/model.js::unreadGrant"
+        }
+      ],
       "related_code": ["demos/state/expiring-unread/reader-source.cjs"],
       "run": "node demos/state/expiring-unread/demo.mjs",
       "verify": "node --test demos/state/expiring-unread/demo.test.mjs",

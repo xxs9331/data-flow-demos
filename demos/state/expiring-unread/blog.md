@@ -2,7 +2,7 @@
 
 状态：待作者文书审查；外部博客尚未发布。
 
-[运行 Demo](README.md) · [完整单文件代码](demo.mjs) · [实际使用位置](README.md#实际使用) · [数据地图](../../../maps/reader-state.md)
+[运行 Demo](README.md) · [完整单文件代码](demo.mjs) · [实际使用代码](https://github.com/xxs9331/koodo-serial-reader/blob/f2ad1058654f12c5f58bf3671276856e2eee57cc/src/utils/serial/model.js#L190) · [数据地图](../../../maps/reader-state.md)
 
 追更阅读器里，同一章临时领取后没读完，过期了。重新领取，再读完，未读红点却还亮着。账本里已经有这章的完成记录，界面也能显示完成进度。
 
