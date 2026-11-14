@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "repository": "https://github.com/xxs9331/data-flow-demos",
+  "default_ref": "main",
+  "demos": [
+    {
+      "id": "expiring-unread",
+      "title": "从带有效期的领取记录计算未读状态",
+      "article_status": "draft-awaiting-author-review",
+      "problem": "历史未完成记录与当前章节完成状态不一致时，怎样选择仍有效的未读记录",
+      "category": "状态计算/带有效期记录",
+      "data_types": ["领取记录", "完成状态", "时间"],
+      "locations": ["同一进程内存"],
+      "implementation": ["JavaScript", "Node.js 标准库"],
+      "readme": "demos/state/expiring-unread/README.md",
+      "map": "maps/reader-state.md",
+      "entry": "demos/state/expiring-unread/demo.mjs",
+      "tests": "demos/state/expiring-unread/demo.test.mjs",
+      "blogs": ["demos/state/expiring-unread/blog.md"],
+      "cases": ["cases/reader-unread/README.md"],
+      "related_code": ["cases/reader-unread/source.cjs"],
+      "run": "node demos/state/expiring-unread/demo.mjs",
+      "verify": "node --test demos/state/expiring-unread/demo.test.mjs",
+      "constraints": ["输入已校验", "同一时间轴", "临时记录使用左闭右开区间", "书籍完成状态优先于历史记录"],
+      "processing": [
+        {
+          "file": "demos/state/expiring-unread/demo.mjs",
+          "symbol": "findUnreadGrant",
+          "inputs": ["BookState@memory", "Grant[]@memory", "now@explicit-input"],
+          "output": "Grant|null@memory",
+          "responsibility": "选择仍有效且章节尚未完成的领取记录"
+        },
+        {
+          "file": "demos/state/expiring-unread/demo.mjs",
+          "symbol": "projectUnread",
+          "inputs": ["BookState@memory", "Grant[]@memory", "now@explicit-input"],
+          "output": "{unread,chapterIndex}@memory",
+          "responsibility": "将有效未读记录映射成展示数据"
+        }
+      ]
+    }
+  ]
+}
