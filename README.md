@@ -67,3 +67,5 @@ npm run review -- /path/to/md-review
 当前只建立用得到的目录。测试、权限、日志、发布等跨越多条数据链路的内容，在有实际 demo 时再添加相应入口。
 
 首个 demo 基于阅读器 AGPL 源码提炼，本仓库使用 [AGPL-3.0](LICENSE)，来源与改写范围见 [NOTICE.md](NOTICE.md)。
+
+初版验证与尚未覆盖的范围见 [交付验证](docs/verification.md)。
