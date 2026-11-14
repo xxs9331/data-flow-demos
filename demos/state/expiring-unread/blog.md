@@ -2,7 +2,7 @@
 
 状态：待作者文书审查；外部博客尚未发布。
 
-[运行 Demo](README.md) · [完整单文件代码](demo.mjs) · [真实案例与源码](../../../cases/reader-unread/README.md) · [数据地图](../../../maps/reader-state.md)
+[运行 Demo](README.md) · [完整单文件代码](demo.mjs) · [实际使用位置](README.md#实际使用) · [数据地图](../../../maps/reader-state.md)
 
 追更阅读器里，同一章临时领取后没读完，过期了。重新领取，再读完，未读红点却还亮着。账本里已经有这章的完成记录，界面也能显示完成进度。
 
@@ -108,7 +108,7 @@ node demo.mjs
 node --test demos/state/expiring-unread/demo.test.mjs
 ```
 
-测试既覆盖有效期边界、跨书隔离、完成状态、追更起点和第 0 章，也重建了那条错误判断：旧逻辑在“重领后完成”时返回未读，修正后的计算返回已读。另有用例将提炼后的函数与[真实源码选段](../../../cases/reader-unread/source.cjs)对照。
+测试既覆盖有效期边界、跨书隔离、完成状态、追更起点和第 0 章，也重建了那条错误判断：旧逻辑在“重领后完成”时返回未读，修正后的计算返回已读。另有用例将提炼后的函数与[真实源码选段](reader-source.cjs)对照。
 
 对于上面的最终输入，`projectUnread(input.book, input.grants, input.now)` 的预期输出为：
 

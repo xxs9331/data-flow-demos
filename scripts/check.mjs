@@ -31,16 +31,26 @@ function files(folder) {
   });
 }
 
-assert.equal(catalog.version, 1);
+assert.equal(catalog.version, 2);
 assert(Array.isArray(catalog.demos) && catalog.demos.length > 0);
 for (const demo of catalog.demos) {
   assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(demo.id) && !ids.has(demo.id), 'ID 无效或重复');
   ids.add(demo.id);
   for (const key of ['title', 'problem', 'category', 'run', 'verify']) assert(demo[key]?.trim(), `${demo.id} 缺少 ${key}`);
-  for (const key of ['data_types', 'locations', 'implementation', 'constraints', 'blogs', 'cases', 'processing']) {
+  for (const key of ['data_types', 'locations', 'implementation', 'constraints', 'blogs', 'processing']) {
     assert(Array.isArray(demo[key]) && demo[key].length > 0, `${demo.id} 缺少 ${key}`);
   }
-  for (const file of [demo.readme, demo.map, demo.entry, demo.tests, ...demo.blogs, ...demo.cases, ...(demo.related_code || [])]) inside(file);
+  for (const file of [demo.readme, demo.map, demo.entry, demo.tests, ...demo.blogs, ...(demo.related_code || [])]) inside(file);
+  assert(Array.isArray(demo.usages), `${demo.id} 缺少实际使用索引`);
+  for (const usage of demo.usages) {
+    const url = new URL(usage.url);
+    assert.equal(url.protocol, 'https:');
+    assert.equal(url.hostname, 'github.com');
+    assert.equal(url.pathname.split('/')[1], new URL(catalog.repository).pathname.split('/')[1], '实际使用必须链接作者自有仓库');
+    assert(/^\/[^/]+\/[^/]+\/blob\/[^/]+\/.+/.test(url.pathname), '实际使用应链接具体代码文件');
+    assert(usage.project?.trim() && usage.location?.trim(), '缺少实际使用项目或位置');
+    assert(text(demo.readme).includes(usage.url), 'Demo 说明缺少实际项目链接');
+  }
   assert(!entries.has(demo.entry), `实现入口重复：${demo.entry}`);
   entries.add(demo.entry);
   for (const process of demo.processing) {
@@ -51,11 +61,6 @@ for (const demo of catalog.demos) {
   for (const blog of demo.blogs) {
     const targets = links(blog);
     assert(targets.includes(demo.readme) && targets.includes(demo.entry), `博客未关联 demo：${blog}`);
-    assert(demo.cases.some(file => targets.includes(file)), `博客未关联案例：${blog}`);
-  }
-  for (const file of demo.cases) {
-    const targets = links(file);
-    assert(targets.includes(demo.readme) && demo.blogs.some(blog => targets.includes(blog)), `案例缺少返回链接：${file}`);
   }
   assert(links(demo.map).includes(demo.readme), '数据地图未链接 demo');
 }

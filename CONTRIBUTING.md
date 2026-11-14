@@ -16,26 +16,25 @@ demos/<问题分类>/<demo-id>/
   blog.md         至少一篇可完整阅读的博客
   demo.mjs        首选一个独立实现文件，后缀随语言变化
   demo.test.mjs   关键边界和独立预期
-cases/<case-id>/
-  README.md       真实触发过程、源码出处、版本和提炼差异
-  source.cjs      需要时保留最小真实源码选段
+  reader-source.cjs  需要时保留测试对照用的最小源码选段
 ```
 
-使用 [Demo 模板](templates/demo.md)、[博客模板](templates/blog.md)、[案例模板](templates/case.md)。文章未在外部发布时，仓库内保留完整博客并标记待审，不能只留一个未来链接。
+使用 [Demo 模板](templates/demo.md) 和 [博客模板](templates/blog.md)。文章未在外部发布时，仓库内保留完整博客并标记待审，不能只留一个未来链接。
 
 ## 登记关系
 
 在 [catalog.json](catalog.json) 的 `demos` 数组添加条目，参照首例填写：
 
 - 稳定 `id`、问题、数据类型、数据位置、技术分类、实现技术。
-- `readme`、`map`、`entry`、`tests`、非空的 `blogs` 和 `cases` 路径。
+- `readme`、`map`、`entry`、`tests`、非空的 `blogs` 路径。
+- `usages` 记录实际采用技术的项目：`project` 为项目名，`url` 直接指向作者自有 GitHub 仓库中的使用代码，`location` 简短注明文件或函数。链接尚未确认时保留空数组，不猜测地址；不单独编写案例文档，不修改实际应用项目。
 - 如有留存的真实源码选段，将路径登记到 `related_code`，文书打包会一起收集。
 - 每个处理节点的真实 `file`、导出 `symbol`、`inputs`、`output` 和 `responsibility`。
 - 从仓库根目录执行的运行与验证命令，以及必须满足的约束。
 
 当前源码绑定检查针对 `.mjs` 导出函数。引入其他语言时，随该 demo 增加对应的绑定检查；不要只登记无法核对的符号。为避免一个文件多次运行，当前每条索引对应一个独立实现入口。
 
-让博客链接 demo 说明、实现文件和案例；案例链接回博客和 demo；首页或地图能够抵达该条目。
+让博客链接 demo 说明和实现文件，实际使用位置放在 demo 说明中；首页或地图能够抵达该条目。
 
 ## 验证并送审
 

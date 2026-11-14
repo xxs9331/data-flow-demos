@@ -1,6 +1,6 @@
 # 阅读状态：历史记录如何变成当前未读状态
 
-[返回技术地图](../README.md) · [博客](../demos/state/expiring-unread/blog.md) · [独立 Demo](../demos/state/expiring-unread/README.md) · [真实案例](../cases/reader-unread/README.md)
+[返回技术地图](../README.md) · [博客](../demos/state/expiring-unread/blog.md) · [独立 Demo 与使用位置](../demos/state/expiring-unread/README.md)
 
 ## 先看数据
 

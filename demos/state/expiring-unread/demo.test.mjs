@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { findUnreadGrant, projectUnread } from './demo.mjs';
-import original from '../../../cases/reader-unread/source.cjs';
+import original from './reader-source.cjs';
 
 const book = { key: 'one', startIndex: 0, completed: [] };
 const first = { key: 'one', index: 0, temporary: true, at: 1000, until: 2000, completed: false };

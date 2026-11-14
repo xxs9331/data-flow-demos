@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { copyFileSync, cpSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
@@ -24,8 +24,8 @@ const commit = git('rev-parse', 'HEAD').trim();
 const files = git('ls-files', '-z').split('\0').filter(Boolean);
 const parent = join(root, 'artifacts', 'review');
 mkdirSync(parent, { recursive: true });
-const output = mkdtempSync(join(parent, demo.id + '-'));
-const project = createProject({ target: join(output, demo.id + '-博客审查'), name: '正文.md' }).project;
+const output = join(parent, demo.id + '-' + randomUUID().slice(0, 8));
+const project = createProject({ target: output, name: '正文.md' }).project;
 const records = [];
 const sha256 = content => createHash('sha256').update(content).digest('hex');
 for (const file of files) {
@@ -73,7 +73,7 @@ try {
     { path: demo.map, title: '01-数据链路.md' },
     { path: demo.entry, title: '02-Demo代码.md', language: 'javascript' },
     { path: demo.tests, title: '03-边界测试.md', language: 'javascript' },
-    { path: demo.cases[0], title: '04-真实案例.md' },
+    { path: demo.readme, title: '04-Demo说明与实际使用.md' },
     ...(demo.related_code || []).map((file, index) => ({ path: file, title: `05-真实源码选段-${index + 1}.md`, language: 'text' })),
     { path: 'README.md', title: '06-仓库组织.md' }
   ];

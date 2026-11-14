@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "repository": "https://github.com/xxs9331/data-flow-demos",
   "default_ref": "main",
   "demos": [
@@ -17,8 +17,8 @@
       "entry": "demos/state/expiring-unread/demo.mjs",
       "tests": "demos/state/expiring-unread/demo.test.mjs",
       "blogs": ["demos/state/expiring-unread/blog.md"],
-      "cases": ["cases/reader-unread/README.md"],
-      "related_code": ["cases/reader-unread/source.cjs"],
+      "usages": [],
+      "related_code": ["demos/state/expiring-unread/reader-source.cjs"],
       "run": "node demos/state/expiring-unread/demo.mjs",
       "verify": "node --test demos/state/expiring-unread/demo.test.mjs",
       "constraints": ["输入已校验", "同一时间轴", "临时记录使用左闭右开区间", "书籍完成状态优先于历史记录"],

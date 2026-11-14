@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // 2026-11-14 追更阅读器 model.js 的原函数选段，函数体未修改。
-// 文件哈希与来源见 README.md；module.exports 为独立核对而添加。
+// 来源说明见 ../../../NOTICE.md；module.exports 为测试核对而添加。
 const integer = (value, min, max) => Number.isInteger(value) && value >= min && value <= max;
 
 function isAllowed(account, key, index, now) {

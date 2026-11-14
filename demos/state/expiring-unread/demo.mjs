@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-// 从追更阅读器 unreadGrant 提炼，来源和改动见 ../../../cases/reader-unread/README.md。
+// 从追更阅读器 unreadGrant 提炼，来源与使用位置见 README.md。
 import { pathToFileURL } from 'node:url';
 
 /** @typedef {{key: string, startIndex: number, completed: number[]}} BookState */
