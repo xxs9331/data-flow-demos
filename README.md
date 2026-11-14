@@ -21,7 +21,7 @@ flowchart LR
 | 阅读入口 | 内容 |
 | --- | --- |
 | 看数据与位置 | [数据地图](maps/reader-state.md) |
-| 理解问题与取舍 | [博客：读完了，未读红点为什么还亮着](demos/state/expiring-unread/blog.md) |
+| 理解问题与取舍 | [博客：从领取记录计算未读状态](demos/state/expiring-unread/blog.md) |
 | 运行和复用 | [单文件 demo 说明](demos/state/expiring-unread/README.md) |
 | 核对实际来源 | [追更阅读器案例](cases/reader-unread/README.md) |
 | 按技术问题查找 | [状态计算 → 带有效期记录的未读判定](demos/state/expiring-unread/README.md) |

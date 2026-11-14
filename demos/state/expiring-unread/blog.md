@@ -1,4 +1,4 @@
-# 读完了，未读红点为什么还亮着
+# 从领取记录计算未读状态：有效期与重复领取的处理
 
 状态：待作者文书审查；外部博客尚未发布。
 
@@ -37,7 +37,29 @@ flowchart LR
 
 最后一行最容易漏掉。完成第二次领取，并不意味着要把第一次领取的历史记录也改成完成。历史列表可以保留原状，查询函数需要理解它。
 
-原来的故障逻辑近似于：找到一条没有完成的领取记录，再检查对应章节现在能不能访问。第一条记录符合“没有完成”；章节又因为已经读完而获得永久访问权限，两项检查都通过了。于是，一条过期记录重新变成了未读依据。
+最后一个时刻的完整最小输入如下，对应 demo 中的“重领后完成”。时间和书籍标识都是合成数据。
+
+```json
+{
+  "book": { "key": "sample-book", "startIndex": 0, "completed": [0] },
+  "grants": [
+    { "key": "sample-book", "index": 0, "temporary": true, "at": 1000, "until": 2000, "completed": false },
+    { "key": "sample-book", "index": 0, "temporary": true, "at": 2000, "until": 3000, "completed": true }
+  ],
+  "now": 2600
+}
+```
+
+原来的故障逻辑近似于：找到一条没有完成的领取记录，再检查对应章节现在能不能访问。下面是测试里重建的最小判定，`isAllowed` 是真实阅读器中的章节访问检查。
+
+```js
+const legacyUnread = account.grants.some(grant =>
+  grant.key === key && !grant.completed &&
+  isAllowed(account, key, grant.index, now)
+);
+```
+
+第一条记录符合“没有完成”；章节又因为已经读完而获得永久访问权限，两项检查都通过了。于是，一条过期记录重新变成了未读依据。
 
 这里，“章节能访问”回答的是权限问题；“这次领取仍有效且尚未读完”回答的是当前未读问题。两个问题需要各自的判定条件。
 
@@ -87,6 +109,14 @@ node --test demos/state/expiring-unread/demo.test.mjs
 ```
 
 测试既覆盖有效期边界、跨书隔离、完成状态、追更起点和第 0 章，也重建了那条错误判断：旧逻辑在“重领后完成”时返回未读，修正后的计算返回已读。另有用例将提炼后的函数与[真实源码选段](../../../cases/reader-unread/source.cjs)对照。
+
+对于上面的最终输入，`projectUnread(input.book, input.grants, input.now)` 的预期输出为：
+
+```json
+{ "unread": false, "chapterIndex": null }
+```
+
+它同时满足两个可核对的事实：第一次领取记录仍然保持未完成，章节当前已经完成。计算结果不要求清理或改写那条旧记录。
 
 ## 放回真实项目时要核对什么
 

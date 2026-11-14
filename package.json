@@ -7,8 +7,8 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "demo": "node demos/state/expiring-unread/demo.mjs",
-    "test": "node --test",
-    "check": "node scripts/check.mjs && node --test",
+    "test": "node scripts/test.mjs",
+    "check": "node scripts/check.mjs && node scripts/test.mjs",
     "review": "node scripts/package-review.mjs"
   }
 }
