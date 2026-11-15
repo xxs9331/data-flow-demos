@@ -12,7 +12,7 @@
  * 临时记录在 at <= now < until 有效；正式记录永久有效。
  * 只查询、不修改历史数据；第 0 章仍是有效目标。
  *
- * 运行：Node.js 22+，无需安装依赖，执行 node demo.mjs。
+ * 运行：Node.js 22+，无需安装依赖，执行 node expiring-unread.mjs。
  * 输出：领取、过期、重领、完成四个阶段，unread 为 true/false/true/false。
  *
  * 实际使用：Koodo 追更阅读器的 model.js::unreadGrant。

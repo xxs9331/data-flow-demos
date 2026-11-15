@@ -1,7 +1,7 @@
 """变长序列组批时排除补齐位置。
 
 数据链路：不同长度的特征序列 -> 右侧补齐并保留长度 -> 掩码平均 -> 每条序列一个向量。
-运行：Python 3.12；安装 CPU 依赖后执行 python demo.py，无需 GPU、模型权重或数据集。
+运行：Python 3.12；安装 CPU 依赖后执行 python masked-mean.py，无需 GPU、模型权重或数据集。
 依赖：python -m pip install torch==2.5.1+cpu --index-url https://download.pytorch.org/whl/cpu
 预期：直接平均的第一行为 [1.5, 1.5]，掩码平均为 [3.0, 3.0]；末尾自检通过。
 约定：输入为非空浮点张量 [B,T,D]，长度为同设备的 int64 [B]，且 1 <= length <= T。
